@@ -13,8 +13,10 @@ public class Squares {
 			23, 25, 27, 29, 31, 33, 35 };
 
 	private static final int C_GREEN = 0;
-	private static final int C_RED = 1;
-	private static final int C_BLACK = 2;
+	private static final int C_RED = 37;
+	private static final int C_BLACK = 38;
+	private static final int C_ODD = 39;
+	private static final int C_EVEN = 40;
 
 	public int[] getGreen() {
 		return Squares.GREEN;
@@ -46,6 +48,30 @@ public class Squares {
 	
 	public int[] getOdd() {
 		return Squares.ODD;
+	}
+	
+	public int getCOdd() {
+		return Squares.C_ODD;
+	}
+	
+	public int getCEven() {
+		return Squares.C_EVEN;
+	}
+	
+	public int getNextRed(int listnr) {
+		return Squares.RED[listnr];
+	}
+	
+	public int getNextBlack(int listnr) {
+		return Squares.BLACK[listnr];
+	}
+	
+	public int getNextOdd(int listnr) {
+		return Squares.ODD[listnr];
+	}
+	
+	public int getNextEven(int listnr) {
+		return Squares.EVEN[listnr];
 	}
 	
 	public int getColorForNumber(int number) {

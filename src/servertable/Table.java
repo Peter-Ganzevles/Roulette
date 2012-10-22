@@ -29,12 +29,28 @@ public class Table {
 
 	public void leaveTable(Player player) {
 		for (Player e : players) {
-			if (e.getId() == player.getId()) {
+			if (e.getName().equals(player.getName())) {
 				players.remove(e);
 			}
 		}
 	}
 
+	public int hasPlayer(String name) {
+		int found = -1;
+		if(players.size() != 0) {
+			for(int i = 0; i < players.size(); i++) {
+				if(players.get(i).getName().equals(name)) {
+					found = i;
+				}
+			}
+		}
+		return found;
+	}
+	
+	public Player getPlayer(int position) {
+		return (players.get(position));
+	}
+	
 	public void placeBet(Bet bet) {
 		if ((bet.getPlayer().getStash() - bet.getValue()) >= 0
 				&& bet.getValue() >= minBet && bet.getValue() <= maxBet) {
