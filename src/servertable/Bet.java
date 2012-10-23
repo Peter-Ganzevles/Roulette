@@ -1,27 +1,34 @@
 package servertable;
 
-import java.util.ArrayList;
 
 public class Bet {
-	private ArrayList<Square> betSquares = new ArrayList<Square>();
+	private int[] betSquares;
 	private static final int multiplication = 36;
 	private int value;
-	private Player player;
+	private int playerid;
 	
-	public Bet(ArrayList<Square> betSquares, int value, Player player) {
-		this.betSquares = betSquares;
+	public Bet(int betsquares, int value, int playerid) {
+		if(betsquares == Squares.getCEven()) {
+			betSquares = Squares.getEven();
+		} else if (betsquares == Squares.getCOdd()) {
+			betSquares = Squares.getOdd();
+		} else if (betsquares == Squares.getColorRed()) {
+			betSquares = Squares.getRed();
+		} else if (betsquares == Squares.getColorBlack()) {
+			betSquares = Squares.getBlack();
+		}
 		this.value = value;
-		this.player = player;
+		this.playerid = playerid;
+	}
+		
+	public int getPlayerId() {
+		return this.playerid;
 	}
 	
-	public Player getPlayer() {
-		return this.player;
-	}
-	
-	public boolean containsSquare(Square square) {
+	public boolean containsSquare(int square) {
 		boolean found = false;
-		for(Square s : betSquares) {
-			if(s.equals(square));
+		for(int s : betSquares) {
+			if(s == square);
 			found = true;
 		}
 		return found;
@@ -32,6 +39,6 @@ public class Bet {
 	}
 	
 	public int getReward() {
-		return((multiplication / betSquares.size())*value);
+		return((multiplication / betSquares.length)*value);
 	}
 }

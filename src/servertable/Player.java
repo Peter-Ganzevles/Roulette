@@ -1,15 +1,15 @@
 package servertable;
 
 public class Player {
-	private String name;
+	private int id;
 	private int stash = 1000;
 	
-	public Player(String name) {
-		this.name = name; 
+	public Player(int id) {
+		this.id = id; 
 	}
 	
-	public String getName() {
-		return this.name;
+	public int getId() {
+		return this.id;
 	}
 
 	public int getStash() {

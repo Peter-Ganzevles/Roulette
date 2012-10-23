@@ -39,5 +39,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Program Files/Eclipse Indigo/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Eclipse Indigo/jackson-core-asl-1.9.10.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

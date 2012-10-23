@@ -18,63 +18,63 @@ public class Squares {
 	private static final int C_ODD = 39;
 	private static final int C_EVEN = 40;
 
-	public int[] getGreen() {
+	public static int[] getGreen() {
 		return Squares.GREEN;
 	}
 
-	public int[] getRed() {
+	public static int[] getRed() {
 		return Squares.RED;
 	}
 
-	public int[] getBlack() {
+	public static int[] getBlack() {
 		return Squares.BLACK;
 	}
 
-	public int getColorGreen() {
+	public static int getColorGreen() {
 		return Squares.C_GREEN;
 	}
 
-	public int getColorRed() {
+	public static int getColorRed() {
 		return Squares.C_RED;
 	}
 
-	public int getColorBlack() {
+	public static int getColorBlack() {
 		return Squares.C_BLACK;
 	}
 
-	public int[] getEven() {
+	public static int[] getEven() {
 		return Squares.EVEN;
 	}
 	
-	public int[] getOdd() {
+	public static int[] getOdd() {
 		return Squares.ODD;
 	}
 	
-	public int getCOdd() {
+	public static int getCOdd() {
 		return Squares.C_ODD;
 	}
 	
-	public int getCEven() {
+	public static int getCEven() {
 		return Squares.C_EVEN;
 	}
 	
-	public int getNextRed(int listnr) {
+	public static int getNextRed(int listnr) {
 		return Squares.RED[listnr];
 	}
 	
-	public int getNextBlack(int listnr) {
+	public static int getNextBlack(int listnr) {
 		return Squares.BLACK[listnr];
 	}
 	
-	public int getNextOdd(int listnr) {
+	public static int getNextOdd(int listnr) {
 		return Squares.ODD[listnr];
 	}
 	
-	public int getNextEven(int listnr) {
+	public static int getNextEven(int listnr) {
 		return Squares.EVEN[listnr];
 	}
 	
-	public int getColorForNumber(int number) {
+	public static int getColorForNumber(int number) {
 		int color = getColorBlack();
 		for(int i : getGreen()) {
 			if(i == number) {

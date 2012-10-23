@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Table {
 	private ArrayList<Player> players;
 	private ArrayList<Bet> bets;
-	private Squares squares;
 	private int minBet;
 	private int maxBet;
 	private int maxPlayers;
@@ -29,17 +28,17 @@ public class Table {
 
 	public void leaveTable(Player player) {
 		for (Player e : players) {
-			if (e.getName().equals(player.getName())) {
+			if (e.getId() == player.getId()) {
 				players.remove(e);
 			}
 		}
 	}
 
-	public int hasPlayer(String name) {
+	public int hasPlayer(int id) {
 		int found = -1;
 		if(players.size() != 0) {
 			for(int i = 0; i < players.size(); i++) {
-				if(players.get(i).getName().equals(name)) {
+				if(players.get(i).getId() == id) {
 					found = i;
 				}
 			}
@@ -51,12 +50,19 @@ public class Table {
 		return (players.get(position));
 	}
 	
-	public void placeBet(Bet bet) {
-		if ((bet.getPlayer().getStash() - bet.getValue()) >= 0
-				&& bet.getValue() >= minBet && bet.getValue() <= maxBet) {
-			bets.add(bet);
-			bet.getPlayer().removeFromStash(bet.getValue());
+	public boolean placeBet(Bet bet) {
+		boolean succes = false;
+		for (Player p : players) {
+			if(p.getId() == bet.getPlayerId()) {
+				if ((p.getStash() - bet.getValue()) >= 0
+						&& bet.getValue() >= minBet && bet.getValue() <= maxBet) {
+					bets.add(bet);
+					p.removeFromStash(bet.getValue());
+					succes = true;
+				}
+			}
 		}
+		return succes;
 	}
 
 	public void clearBets() {
@@ -65,10 +71,10 @@ public class Table {
 
 	public Square roll() {
 		int number = (int) (Math.random() * nrOfSquares);
-		return new Square(number, squares.getColorForNumber(number));
+		return new Square(number, Squares.getColorForNumber(number));
 	}
 
-	public ArrayList<Bet> getWinningBets(Square square) {
+	public ArrayList<Bet> getWinningBets(int square) {
 		ArrayList<Bet> winningBets = new ArrayList<Bet>();
 		for (Bet b : bets) {
 			if (b.containsSquare(square)) {
@@ -80,7 +86,11 @@ public class Table {
 
 	public void payOut(ArrayList<Bet> payOutBets) {
 		for (Bet b : payOutBets) {
-			b.getPlayer().addToStash(b.getReward());
+			for(Player p : players) {
+				if(p.getId() == b.getPlayerId()) {
+					p.addToStash(b.getReward());
+				}
+			}
 		}
 	}
 
